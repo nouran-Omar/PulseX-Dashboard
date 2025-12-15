@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+// 👇 التغيير هنا: استوردنا HashRouter
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // --- Layouts ---
 import PatientLayout from './layouts/PatientLayout';
@@ -38,7 +39,7 @@ import StoriesManagement from './pages/admin/StoriesManagement';
 import ActivityLogs from './pages/admin/ActivityLogs';
 import AdminSettings from './pages/admin/AdminSettings';
 
-// صفحة مؤقتة للصفحات اللي لسه مخلصتش
+// Placeholder Component
 const Placeholder = ({ title }) => (
   <div className="p-10 text-center">
     <h2 className="text-2xl font-bold text-gray-400">{title} Page Coming Soon...</h2>
@@ -47,9 +48,10 @@ const Placeholder = ({ title }) => (
 
 function App() {
   return (
-    <BrowserRouter>
+    // 👇 استخدمنا HashRouter بدل BrowserRouter
+    <HashRouter>
       <Routes>
-        {/* 1️⃣ التوجيه الرئيسي: يفتح على الأدمن مباشرة */}
+        {/* التوجيه الرئيسي: يفتح على الأدمن مباشرة */}
         <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
 
         {/* ================= PATIENT ROUTES ================= */}
@@ -91,10 +93,10 @@ function App() {
           <Route path="settings" element={<AdminSettings />} />
         </Route>
 
-        {/* صفحة 404 لأي رابط غلط */}
-        <Route path="*" element={<div className="flex h-screen items-center justify-center text-xl text-gray-500 font-bold">404 - Page Not Found</div>} />
+        {/* صفحة 404 */}
+        <Route path="*" element={<div className="flex h-screen items-center justify-center text-xl font-bold text-gray-500">404 - Page Not Found</div>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
