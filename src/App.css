@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ناعم الخطوط شوية */
+body {
+  background-color: #F8F9FE;
+}
